@@ -32,8 +32,7 @@ defmodule ProjectserverWeb.ApiController do
 
   def show(conn, %{"fetch_schedule" => _val, "device_id" => device_id}) do
     #schedule = Schedules.list_schedules()
-    schedule = [%{date: "27,6,2024", time: "15,15", pill: "ibuprofen"},
-                  %{date: "27,6,2024", time: "15,20", pill: "ibuprofen"}]
+    schedule = [%{date: "27,6,2024", time: "15,36", pill: "ibuprofen"}]
     result = Jason.encode!(schedule)
     #json(conn, result)
     conn
