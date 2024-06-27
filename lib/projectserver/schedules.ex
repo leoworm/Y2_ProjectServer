@@ -55,6 +55,11 @@ defmodule Projectserver.Schedules do
     |> Repo.insert()
   end
 
+  def get_specified_schedule(device_id) do
+    from(s in Schedule, where: s.device_id == ^device_id)
+    |> Repo.all()
+  end
+
   @doc """
   Updates a schedule.
 
