@@ -1,5 +1,6 @@
 defmodule ProjectserverWeb.ApiController do
   alias Projectserver.Pills
+  alias Projectserver.Pills.Pill
   alias Projectserver.Schedules
   alias Projectserver.Schedules.Schedule
   alias Projectserver.Users
@@ -25,8 +26,9 @@ defmodule ProjectserverWeb.ApiController do
     end
   end
 
+
   def show(conn, %{"list_pills" => _val}) do
-    devices = Pills.list_pills()
+    devices = Pills.list_pills() |> Enum.map(&Map.drop(&1, [:__meta__, :__struct__]))
     json(conn, devices)
   end
 
