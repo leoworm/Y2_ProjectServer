@@ -23,18 +23,23 @@ defmodule Projectserver.Users do
   end
 
   def get_uname_and_pwd(username, password) do
-    entry = from(u in User, where: u.username == ^username)
-    |> Repo.all()
+    query = from(u in User, where: u.username == ^username)
 
-    if Map.has_key?(entry, :password) do
-      if entry.password == password do
-        {:ok}
+    if Repo.exists?(query) do
+      entry = Repo.all(query)
+
+      if Map.has_key?(entry, :password) do
+        if entry.password == password do
+          {:ok}
+        else
+          {:error}
+        end
       else
         {:error}
       end
-    else
-      {:error}
     end
+
+
 
   end
 
