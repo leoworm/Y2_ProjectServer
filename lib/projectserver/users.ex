@@ -26,7 +26,11 @@ defmodule Projectserver.Users do
     entry = from(u in User, where: u.username == ^username)
     |> Repo.all()
 
-    Logger.debug(entry)
+    if entry.password == password do
+      {:ok}
+    else
+      {:error}
+    end
 
   end
 
