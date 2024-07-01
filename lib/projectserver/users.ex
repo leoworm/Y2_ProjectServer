@@ -27,7 +27,7 @@ defmodule Projectserver.Users do
     Logger.debug(Repo.exists?(query))
 
     if Repo.exists?(query) do
-      entry = Repo.all(query)[0]
+      entry = List.first(Repo.all(query))
 
       if Map.has_key?(entry, :password) do
         if entry.password == password do
