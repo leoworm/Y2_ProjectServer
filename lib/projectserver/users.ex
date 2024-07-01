@@ -26,8 +26,12 @@ defmodule Projectserver.Users do
     entry = from(u in User, where: u.username == ^username)
     |> Repo.all()
 
-    if entry.password == password do
-      {:ok}
+    if Map.has_key?(entry, :password) do
+      if entry.password == password do
+        {:ok}
+      else
+        {:error}
+      end
     else
       {:error}
     end
