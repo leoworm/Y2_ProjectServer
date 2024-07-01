@@ -34,7 +34,7 @@ defmodule ProjectserverWeb.ApiController do
     else
       :error ->
       conn
-      |> put_status(:error)
+      |> put_status(:forbidden)
       |> json(:error)
     end
   end
