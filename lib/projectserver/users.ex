@@ -24,6 +24,7 @@ defmodule Projectserver.Users do
 
   def get_uname_and_pwd(username, password) do
     query = from(u in User, where: u.username == ^username)
+    Logger.debug(Repo.exists?(query))
 
     if Repo.exists?(query) do
       entry = Repo.all(query)
