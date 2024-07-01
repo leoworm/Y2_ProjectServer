@@ -75,9 +75,14 @@ defmodule Projectserver.Users do
 
   """
   def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
-    |> Repo.insert()
+    query = from(u in User, where: u.username == ^attrs.username)
+    if !Repo.exists?(query) do
+      %User{}
+      |> User.changeset(attrs)
+      |> Repo.insert()
+    else
+      {:error, %{}}
+    end
   end
 
   @doc """
