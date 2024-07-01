@@ -26,6 +26,14 @@ defmodule ProjectserverWeb.ApiController do
     end
   end
 
+  def create(conn, %{"register_data" => register_params}) do
+    with {:ok, %User{} = user} <- Users.create_user(register_params) do
+      conn
+      |> put_status(:created)
+      |> json(:ok)
+    end
+  end
+
 
   def show(conn, %{"list_pills" => _val}) do
     devices = Pills.list_pills() |> Enum.map(&Map.drop(&1, [:__meta__, :__struct__]))
@@ -48,7 +56,7 @@ defmodule ProjectserverWeb.ApiController do
   end
 
   def show(conn, %{"username" => username, "password" => password}) do
-    #test_result = %{success: true}
+    Users.get_uname_and_pwd('test', 'test')
     #|> Jason.encode!()
     json(conn, %{success: true})
   end

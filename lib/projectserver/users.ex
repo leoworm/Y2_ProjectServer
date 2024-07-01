@@ -7,6 +7,7 @@ defmodule Projectserver.Users do
   alias Projectserver.Repo
 
   alias Projectserver.Users.User
+  require Logger
 
   @doc """
   Returns the list of users.
@@ -21,11 +22,13 @@ defmodule Projectserver.Users do
     Repo.all(User)
   end
 
-  # def check_login_details(username, password, device_id) do
-  #   query = from u in User,
-  #     where: u.device == device_id,
+  def get_uname_and_pwd(username, password) do
+    entry = from(u in User, where: u.username == ^username)
+    |> Repo.all()
 
-  # end
+    Logger.debug(entry)
+
+  end
 
   @doc """
   Gets a single user.
