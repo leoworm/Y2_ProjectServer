@@ -75,7 +75,7 @@ defmodule Projectserver.Users do
 
   """
   def create_user(attrs \\ %{}) do
-    query = from(u in User, where: u.username == ^attrs.username)
+    query = from(u in User, where: u.username == ^attrs["username"])
     if !Repo.exists?(query) do
       %User{}
       |> User.changeset(attrs)
