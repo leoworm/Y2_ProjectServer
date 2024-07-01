@@ -56,7 +56,7 @@ defmodule ProjectserverWeb.ApiController do
   end
 
   def show(conn, %{"username" => username, "password" => password}) do
-    Users.get_uname_and_pwd('test', 'test')
+    Users.get_uname_and_pwd("test", "test")
     #|> Jason.encode!()
     json(conn, %{success: true})
   end
