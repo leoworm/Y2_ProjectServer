@@ -31,6 +31,11 @@ defmodule ProjectserverWeb.ApiController do
       conn
       |> put_status(:created)
       |> json(:ok)
+    else
+      :error ->
+      conn
+      |> put_status(:error)
+      |> json(:error)
     end
   end
 

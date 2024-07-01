@@ -81,7 +81,7 @@ defmodule Projectserver.Users do
       |> User.changeset(attrs)
       |> Repo.insert()
     else
-      {:error, %{}}
+      :error
     end
   end
 
