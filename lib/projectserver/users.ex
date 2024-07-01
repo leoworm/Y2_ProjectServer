@@ -38,6 +38,8 @@ defmodule Projectserver.Users do
       else
         {:error}
       end
+    else
+      {:error}
     end
 
 
