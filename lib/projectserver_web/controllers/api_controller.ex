@@ -46,7 +46,7 @@ defmodule ProjectserverWeb.ApiController do
   end
 
   def show(conn, %{"fetch_schedule" => _val, "device_id" => device_id}) do
-    schedule = Schedules.get_specified_schedule(device_id)
+    schedule = Schedules.get_specified_schedule(device_id) |> Enum.map(&Map.drop(&1, [:__meta__, :__struct__]))
     result = Jason.encode!(schedule)
     #json(conn, result)
     conn
